@@ -17,6 +17,8 @@ Wszystko jest szerzej opisane w pliku [config.yml](config.yml).
 
 Najciekawsza jest opcja `wait_before_checking_player_list`. Najlepiej jest zostawić domyślną wartość (`0.8`), ale kiedy coś będzie nie działać, można się pobawić. Zalecane jest ustawianie wartości od `0.5` do `1`.
 
+Jeśli uruchamiasz program pod Linuksem, wymagane jest `mono`.
+
 ## Informacje
 **VanishSee** wykorzystuje projekt [ORelio/Minecraft-Console-Client](https://github.com/ORelio/Minecraft-Console-Client) do swojego działania, który jest udostępniany na licencji [CDDL-1.0](https://opensource.org/licenses/CDDL-1.0).
 
