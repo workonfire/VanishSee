@@ -1,5 +1,5 @@
 from gc2client import GC2Client
-from time import sleep
+from time import sleep, time
 from colorama import init, deinit, Fore
 from os import system
 import platform
@@ -10,9 +10,9 @@ __AUTHOR__ = ['Buty935', 'workonfire']
 
 
 def main():
-    def color_print(color, text):
+    def color_print(color, text, no_newline=False):
         init(autoreset=True)
-        print(color + text)
+        print(color + text, end='') if no_newline else print(color + text)
         deinit()
 
     if platform.system() == 'Windows':
@@ -58,20 +58,29 @@ def main():
         color_print(Fore.GREEN, "\nDołączanie na serwer...")
         client = GC2Client(nick)
 
-        color_print(Fore.GREEN, "Logowanie...")
+        start_time = time()
+        color_print(Fore.GREEN, "Logowanie...", no_newline=True)
         sleep(config['wait_before_authenticating'])
         if account_password != '':
             client.authenticate(account_password)
-        color_print(Fore.GREEN, "Wchodzenie na tryb...")
-        sleep(config['wait_before_joining'])
+        print(' [' + str(round(time() - start_time, 2)) + ' s]')
 
+        start_time = time()
+        color_print(Fore.GREEN, "Wchodzenie na tryb...", no_newline=True)
+        sleep(config['wait_before_joining'])
         client.join(gamemode.upper())
-        color_print(Fore.GREEN, "Sprawdzanie listy użytkowników...")
+        print(' [' + str(round(time() - start_time, 2)) + ' s]')
+
+        start_time = time()
+        color_print(Fore.GREEN, "Sprawdzanie listy użytkowników...", no_newline=True)
         sleep(config['wait_before_checking_player_list'])
         client.send_input('/list')
+        print(' [' + str(round(time() - start_time, 2)) + ' s]')
 
-        color_print(Fore.GREEN, "Kończenie...")
+        start_time = time()
+        color_print(Fore.GREEN, "Kończenie...", no_newline=True)
         sleep(config['wait_before_sending_output'])
+        print(' [' + str(round(time() - start_time, 2)) + ' s]')
         return client.get_full_output()
 
     iterator = 0
@@ -84,8 +93,11 @@ def main():
             print("\nLista wszystkich zalogowanych administratorów:")
             for user in userlist:
                 if user in config['staff']:
-                    color_print(Fore.CYAN, ">> " + user)
-            print("\nJeśli nie udało się pobrać listy administracji na vanishu, spróbuj ponownie.")
+                    color_print(Fore.LIGHTYELLOW_EX, ">> ", no_newline=True)
+                    color_print(Fore.CYAN, user)
+            print("\nJeśli nie udało się pobrać listy administracji na vanishu, ", end='')
+            color_print(Fore.LIGHTRED_EX, "spróbuj ponownie", no_newline=True)
+            print(".")
             print("Upewnij się też, że w ogóle ktoś siedzi ukryty.")
             if platform.system() == 'Windows':
                 system('title VanishSee')

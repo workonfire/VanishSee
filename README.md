@@ -1,7 +1,7 @@
 # VanishSee
 Program do sprawdzania osób będących na vanishu na serwerze [GC2](https://gc2.pl).
 
-![Screnshot](https://i.imgur.com/aMoHz6A.png)
+![Screnshot](https://i.imgur.com/LruBYyM.png)
 
 ## Działanie
 Program wykorzystuje fakt, że w milisekundy po wejściu gracza na serwer, ten musi przetworzyć dla użytkownika listę wszystkich osób, by dowiedzieć się, kogo możemy zobaczyć, a kogo nie.
