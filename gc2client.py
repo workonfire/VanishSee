@@ -41,7 +41,7 @@ class GC2Client:
                      'CLASSIC MC': [25],
                      'PVP': [31]}
         self.click(1, gamemodes.get(gamemode)[0])
-        if gamemodes.get(gamemode)[1]:
+        if len(gamemodes.get(gamemode)) == 2:
             sleep(2)
             self.click(2, gamemodes.get(gamemode)[1])
 
