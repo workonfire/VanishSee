@@ -1,0 +1,39 @@
+# Jeśli coś nie będzie działać, możesz spróbować pobawić się tymi ustawieniami.
+
+# W tym miejscu możesz dostosować wszystkie wartości.
+# Czas jest mierzony w sekundach.
+
+wait_before_authenticating: 0.5  # Ile czasu program ma czekać przed zalogowaniem się na serwer
+wait_before_joining: 2  # Ile czasu program ma czekać przed wejściem na tryb
+wait_before_checking_player_list: 0.8  # Najważniejsza opcja - ile czasu program ma czekać przed użyciem komendy /list
+wait_before_sending_output: 3  # Ile czasu program ma czekać przed wysłaniem odpowiedzi do użytkownika
+
+# Lista administracji
+staff:
+  - EsqL
+  - Morkazoid
+  - Bella
+  - kjbiskupscy
+  - MrSebastian
+  - Piter26
+  - Rexks
+  - TBone151219
+  - Hawkseyebrow
+  - HellBoy982
+  - ilUnicornli
+  - Jikazuki
+  - ExIsT
+  - Marta527
+  - MrCharus
+  - oliwka05
+  - Open24
+  - Pawel654
+  - ShirO_
+  - siwerek2
+  - Sociopath
+  - xJulciaax
+  - zlotan
+  - LadyAnieQ
+  - X_MrJohn_X
+  - _Shizouh
+  - Baarek
