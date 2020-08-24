@@ -6,7 +6,7 @@ import platform
 import yaml
 import pypresence
 
-__VERSION__ = '1.0.1'
+__VERSION__ = '1.0.2'
 __AUTHOR__ = ['Buty935', 'workonfire']
 __CLIENT_ID__ = 747446174679564308
 
@@ -101,16 +101,14 @@ def main():
         print(' [' + str(round(time() - start_time, 2)) + ' s]')
         return client.get_full_output()
 
-    rpc.update(large_image='ghost',
-               small_image='gc2',
-               small_text="GC2",
-               details="Sprawdza osoby na /v",
-               state="Tryb: " + game_mode)
+    if config['discord_rich_presence']:
+        rpc.update(large_image='ghost',
+                   small_image='gc2',
+                   small_text="GC2",
+                   details="Sprawdza osoby na /v",
+                   state="Tryb: " + game_mode)
 
-    iterator = 1
     while True:
-        if iterator == 3:
-            print("Do trzech razy sztuka...")
         output = perform_exploit(nickname, password, game_mode)
         userlist = extract_userlist(output)
         vanished_players = []
@@ -133,13 +131,11 @@ def main():
             print("Upewnij się też, że w ogóle ktoś siedzi ukryty.")
             if platform.system() == 'Windows':
                 system('title VanishSee')
-                print("\nBy zakończyć pracę programu, naciśnij dowolny klawisz.")
-                system('pause >nul')
-            break
+            print("\nBy spróbować ponownie, naciśnij Enter.")
+            input()
         else:
             color_print(Fore.RED, "\nNie udało się sprawdzić listy użytkowników. Ponawianie...")
             sleep(2)
-            iterator += 1
 
 
 if __name__ == '__main__':
