@@ -113,14 +113,20 @@ def main():
             print("Do trzech razy sztuka...")
         output = perform_exploit(nickname, password, game_mode)
         userlist = extract_userlist(output)
+        vanished_players = []
         if config['debug']:
             print(output)
         if userlist is not None:
             print("\nLista wszystkich zalogowanych administratorów:")
             for user in userlist:
                 if user in config['staff']:
+                    vanished_players.append(user)
+            if vanished_players:
+                for player in vanished_players:
                     color_print(Fore.LIGHTYELLOW_EX, ">> ", no_newline=True)
-                    color_print(Fore.CYAN, user)
+                    color_print(Fore.CYAN, player)
+            else:
+                color_print(Fore.CYAN, "Brak :(")
             print("\nJeśli nie udało się pobrać listy administracji na vanishu, ", end='')
             color_print(Fore.LIGHTRED_EX, "spróbuj ponownie", no_newline=True)
             print(".")
