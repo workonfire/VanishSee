@@ -8,6 +8,9 @@ wait_before_joining: 2  # Ile czasu program ma czekać przed wejściem na tryb
 wait_before_checking_player_list: 0.8  # Najważniejsza opcja - ile czasu program ma czekać przed użyciem komendy /list
 wait_before_sending_output: 3  # Ile czasu program ma czekać przed wysłaniem odpowiedzi do użytkownika
 
+discord_rich_presence:  true  # Ustaw na "false", jeśli nie chcesz integracji z Discordem.
+debug: false  # Ustaw na "true" w celach diagnostycznych.
+
 # Lista administracji
 staff:
   - EsqL

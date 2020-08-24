@@ -1,4 +1,7 @@
 # VanishSee
+
+[![pypresence](https://img.shields.io/badge/using-pypresence-00bb88.svg?style=flat&logo=discord&logoWidth=20)](https://github.com/qwertyquerty/pypresence)
+
 Program do sprawdzania osób będących na vanishu na serwerze [GC2](https://gc2.pl).
 
 ![Screnshot](https://i.imgur.com/LruBYyM.png)

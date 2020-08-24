@@ -4,17 +4,20 @@ from colorama import init, deinit, Fore
 from os import system
 import platform
 import yaml
+import pypresence
 
-__VERSION__ = '1.0.0'
+__VERSION__ = '1.0.1'
 __AUTHOR__ = ['Buty935', 'workonfire']
+__CLIENT_ID__ = 747446174679564308
+
+
+def color_print(color, text, no_newline=False):
+    init(autoreset=True)
+    print(color + text, end='') if no_newline else print(color + text)
+    deinit()
 
 
 def main():
-    def color_print(color, text, no_newline=False):
-        init(autoreset=True)
-        print(color + text, end='') if no_newline else print(color + text)
-        deinit()
-
     if platform.system() == 'Windows':
         system('title VanishSee')
 
@@ -34,6 +37,21 @@ def main():
     with open('config.yml') as config_file:
         config = yaml.safe_load(config_file)
 
+    rpc = pypresence.Presence(__CLIENT_ID__)
+    if config['discord_rich_presence']:
+        try:
+            rpc.connect()
+            rpc.update(large_image='ghost',
+                       large_text="VanishSee by workonfire#8262",
+                       small_image='gc2',
+                       small_text="GC2",
+                       details="Sprawdza osoby na /v"
+                       )
+        except pypresence.ServerError and pypresence.DiscordError and pypresence.PyPresenceException:
+            config['discord_rich_presence'] = False
+
+    if config['debug']:
+        color_print(Fore.RED, "UWAGA: Tryb debugowania jest włączony.")
     nickname = input("Nick: ")
     password = input("Hasło (jeśli masz włączony autologin, zostaw puste): ")
     if password != '':
@@ -83,12 +101,20 @@ def main():
         print(' [' + str(round(time() - start_time, 2)) + ' s]')
         return client.get_full_output()
 
-    iterator = 0
+    rpc.update(large_image='ghost',
+               small_image='gc2',
+               small_text="GC2",
+               details="Sprawdza osoby na /v",
+               state="Tryb: " + game_mode)
+
+    iterator = 1
     while True:
         if iterator == 3:
             print("Do trzech razy sztuka...")
         output = perform_exploit(nickname, password, game_mode)
         userlist = extract_userlist(output)
+        if config['debug']:
+            print(output)
         if userlist is not None:
             print("\nLista wszystkich zalogowanych administratorów:")
             for user in userlist:
@@ -114,4 +140,6 @@ if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
-        pass
+        if platform.system() == 'Windows':
+            color_print(Fore.RED, "Działanie programu zostało zakończone.")
+            system('pause >nul')
