@@ -133,7 +133,7 @@ def main():
                 system('title VanishSee')
             print("\nBy spróbować ponownie, naciśnij Enter.")
             input()
-        elif "ktoś może być już zalogowany na tej nazwie" in output:
+        elif "Failed to login to this server." in output:
             color_print(Fore.RED, f"\nNie udało się zalogować na konto {nickname}. Jeśli jesteś obecnie na"
                                   " GC2 - wyjdź.")
             print("Naciśnij Enter, by kontynuować.")
